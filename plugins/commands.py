@@ -38,13 +38,13 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention, message.from_user.username, temp.U_NAME))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton("⭕  ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⭕", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
+            InlineKeyboardButton("➕️ 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 ➕️", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
             ],[
-            InlineKeyboardButton("👑 ᴏᴡɴᴇʀ 👑", callback_data="owner_hun"), 
-            InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ 🛠️", callback_data="support_karo")
+            InlineKeyboardButton("𝚂𝙴𝙰𝚁𝙲𝙷 🔍", switch_inline_query_current_chat=''), 
+            InlineKeyboardButton("𝚄𝙿𝙳𝙰𝚃𝙴𝚂 📢", url="https://t.me/Pikashow_Movies_Request")
             ],[      
-            InlineKeyboardButton("⁉️ ʜᴇʟᴘ ⁉️", callback_data="help"),
-            InlineKeyboardButton("📝 ᴀʙᴏᴜᴛ 📝", callback_data="about")
+            InlineKeyboardButton("𝙷𝙴𝙻𝙿 👁️‍🗨️", callback_data="help"),
+            InlineKeyboardButton("𝙰𝙱𝙾𝚄𝚃 ℹ️", callback_data="about")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -88,13 +88,13 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton("⭕  ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⭕", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
+            InlineKeyboardButton("➕️ 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 ➕️", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
             ],[
-            InlineKeyboardButton("👑 ᴏᴡɴᴇʀ 👑", callback_data="owner_hun"), 
-            InlineKeyboardButton("🛠️ sᴜᴘᴘᴏʀᴛ 🛠️", callback_data="support_karo")
+            InlineKeyboardButton("𝚂𝙴𝙰𝚁𝙲𝙷 🔍", switch_inline_query_current_chat=''), 
+            InlineKeyboardButton("𝚄𝙿𝙳𝙰𝚃𝙴𝚂 📢", url="https://t.me/Pikashow_Movies_Request")
             ],[      
-            InlineKeyboardButton("⁉️ ʜᴇʟᴘ ⁉️", callback_data="help"),
-            InlineKeyboardButton("📝 ᴀʙᴏᴜᴛ 📝", callback_data="about")
+            InlineKeyboardButton("𝙷𝙴𝙻𝙿 👁️‍🗨️", callback_data="help"),
+            InlineKeyboardButton("𝙰𝙱𝙾𝚄𝚃 ℹ️", callback_data="about")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -159,9 +159,10 @@ async def start(client, message):
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
-            await asyncio.sleep(1) 
-        await sts.delete()
-        return
+            await asyncio.sleep(1)
+            return await sts.delete()
+        
+        
     elif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("Please wait")
         b_string = data.split("-", 1)[1]
